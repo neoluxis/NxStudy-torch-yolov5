@@ -355,6 +355,7 @@ def check_git_status(repo='ultralytics/yolov5', branch='master'):
     check_output(f'git fetch {remote}', shell=True, timeout=5)  # git fetch
     local_branch = check_output('git rev-parse --abbrev-ref HEAD', shell=True).decode().strip()  # checked out
     n = int(check_output(f'git rev-list {local_branch}..{remote}/{branch} --count', shell=True))  # commits behind
+    # n = 0
     if n > 0:
         pull = 'git pull' if remote == 'origin' else f'git pull {remote} {branch}'
         s += f"⚠️ YOLOv5 is out of date by {n} commit{'s' * (n > 1)}. Use '{pull}' or 'git clone {url}' to update."
